@@ -1,0 +1,9 @@
+.movies {
+	width: 300px;
+	border-radius: 20px;
+	padding: 0.5rem;
+}
+
+.movie-container {
+	background-color: black;
+}

@@ -1,57 +1,66 @@
-import { MOVIE_API, movieOptions } from "../api";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { AsyncPaginate } from 'react-select-async-paginate';
 import Movie from '../components/Movie';
+import Swipe from '../components/Swipe';
+import '../styles/home.css';
 
 const Home = () => {
   const [search, setSearch] = useState(null);
 
   const loadOptions = async (inputValue) => {
     try {
-      const response = await fetch(`${MOVIE_API}/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc`, movieOptions);
+      const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=633f745f9c96b2a95d32f0c161fe6645&query=${inputValue}`);
       const responseData = await response.json();
 
-      // Check if 'data' is an array before using map
-      const options = Array.isArray(responseData.data)
-        ? responseData.results.map((movie) => ({
-            value: movie.id,
-            label: movie.title,
-          }))
-        : [];
-
-      return { options };
+      if (responseData.total_results > 0) {
+        const options = responseData.results.map((movie) => ({
+          value: movie.id,
+          label: movie.title,
+        }));
+        return { options };
+      } else {
+        return { options: [] };
+      }
     } catch (error) {
       console.error(error);
-      return { options: [] }; 
+      return { options: [] };
     }
   };
 
-	const handleOnChange = (selectedOption) => {
-		setSearch(selectedOption)
-	}
+  const handleOnChange = (selectedOption) => {
+    setSearch(selectedOption);
+  };
 
-	const getOptionLabel = (option) => option.label;
+  const getOptionLabel = (option) => option.label;
 
-	// useEffect(() => {
-	// 	let mediaQuery = window.matchMedia('(min-width: 525px)');
-	// 	mediaQuery.addEventListener('change', isDesktop);
+  const customStyles = {
+    control: (provided) => ({
+      ...provided,
+      width: '50%',
+      margin: '0 auto',
+    }),
+    container: (provided) => ({
+      ...provided,
+      backgroundColor: '#1a1a1a',
+    }),
+  };
 
-	// 	return () => {
-  //     mediaQuery.removeEventListener('change', isDesktop);
-  //   }
-	// }, [])
-	
   return (
-		<>
-    <AsyncPaginate
-      placeholder="Search for trending movies"
-      debounce={1000}
-      value={search}
-      loadOptions={loadOptions}
-			onChange={handleOnChange}
-    />
-		<Movie/>
-		</>
+    <>
+      <AsyncPaginate
+        className="search"
+        placeholder="Search"
+        debounce={1000}
+        value={search}
+        loadOptions={loadOptions}
+        onChange={handleOnChange}
+        getOptionLabel={getOptionLabel}
+        isSearchable
+        styles={customStyles}
+      />
+      <Swipe />
+      <Movie />
+    </>
   );
 };
 

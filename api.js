@@ -7,3 +7,4 @@ export const movieOptions = {
 };
 
 export const MOVIE_API = 'https://api.themoviedb.org/3';
+

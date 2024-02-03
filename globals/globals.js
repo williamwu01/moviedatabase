@@ -1,4 +1,4 @@
-export const appTitles = 'logo'
+export const appTitles = "app title's";
 // (
 // 	<svg
 // 	cache-id="b443b179b2584ed58696d826962a9593"

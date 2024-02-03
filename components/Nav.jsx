@@ -15,17 +15,18 @@ const Nav = () => {
   }
 
 	const isDesktop = (e) => {
+		console.log(e);
 		if (e.matches) {
       setShowNav(false);
     }
 	}
 
-	useEffect(() => {
-    let mediaQuery = window.matchMedia('(min-width:600px)')
-		mediaQuery.addEventListener('change', isDesktop);
+	// useEffect(() => {
+  //   let mediaQuery = window.matchMedia('(min-width:600px)')
+	// 	mediaQuery.addEventListener('change', isDesktop);
 
-		return () => mediaQuery.removeEventListener('change', isDesktop);
-	}, []);
+	// 	return () => mediaQuery.removeEventListener('change', isDesktop);
+	// }, []);
 
   return (
     <>
@@ -37,8 +38,15 @@ const Nav = () => {
           <li><NavLink to="/favourites">Favourites</NavLink></li>
         </ul>
       </nav>
-			<label onClick={toggleNav}
-        htmlFor="check">
+			 <nav className= {showNav? 'show': ''}>
+        <ul className='desktop-nav' >
+          <li><NavLink to="/about">About</NavLink></li>
+          <li><NavLink to="/">Home</NavLink></li>
+          <li><NavLink to="/category">Category</NavLink></li>
+          <li><NavLink to="/favourites">Favourites</NavLink></li>
+        </ul>
+      </nav>
+			<label className="menubutton" onClick={toggleNav}>
         <input type="checkbox" id="check" onClick={(e)=>e.stopPropagation()}/>
         <span></span>
         <span></span>

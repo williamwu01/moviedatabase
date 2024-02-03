@@ -1,9 +1,10 @@
 import Nav from './Nav';
 import { Link } from 'react-router-dom';
-import {appTitles} from '../globals/globals';
+// import {appTitles} from '../globals/globals';
+import Logo from './Logo';
 
 
-const Header = ({handleShowHideNav}) => {
+const Header = () => {
 
 	const closeNav = (e) => {
 		if( window.innerWidth < 600){
@@ -15,7 +16,7 @@ const Header = ({handleShowHideNav}) => {
 
 	return (
 		<header>
-			<h1><Link to ="/" >{appTitles}</Link></h1>
+			<h1><Link to ="/" ><Logo/></Link></h1>
 			<Nav onClick={closeNav} />
 		</header>
 	)

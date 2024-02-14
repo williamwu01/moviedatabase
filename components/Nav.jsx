@@ -34,7 +34,6 @@ const Nav = () => {
         <ul className='main-nav'>
           <li><NavLink to="/about">About</NavLink></li>
           <li><NavLink to="/">Home</NavLink></li>
-          <li><NavLink to="/category">Category</NavLink></li>
           <li><NavLink to="/favourites">Favourites</NavLink></li>
         </ul>
       </nav>
@@ -42,7 +41,6 @@ const Nav = () => {
         <ul className='desktop-nav' >
           <li><NavLink to="/about">About</NavLink></li>
           <li><NavLink to="/">Home</NavLink></li>
-          <li><NavLink to="/category">Category</NavLink></li>
           <li><NavLink to="/favourites">Favourites</NavLink></li>
         </ul>
       </nav>

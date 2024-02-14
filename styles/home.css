@@ -25,9 +25,6 @@ header {
 	padding: 0;
 	display: flex;
 	align-items: center;
-	padding-left: 3rem;
-	padding-right: 3rem;
-	padding-top: 2rem;
 	background-color: #1a1a1a;
 	width: auto;
 }
@@ -46,7 +43,7 @@ header {
 	right: 0;
 	left: 0;
 	width: 100%;
-	z-index: 100;
+	z-index: 101;
 	padding: 2rem;
 }
 
@@ -56,6 +53,7 @@ header {
 	justify-content: space-between;
 	position: absolute;
 	top: 50%;
+	transform: translateY(-50%);
 	z-index: 100;
 }
 
@@ -73,12 +71,9 @@ a:hover {
 	color: #535bf2;
 }
 
-/* body {
-	margin: 0;
-	place-items: center;
-	min-width: 320px;
-	min-height: 100vh;
-} */
+input {
+	outline: none;
+}
 
 h1 {
 	line-height: 1.1;
@@ -89,7 +84,8 @@ h1 {
 	background-color: #1a1a1a;
 }
 
-button {
+button,
+.button {
 	border-radius: 8px;
 	border: 1px solid transparent;
 	padding: 0.6em 1.2em;
@@ -117,7 +113,7 @@ button:focus-visible {
 }
 
 .desktop-nav li:hover {
-	border: 1px solid #646cff;
+	outline: 1px solid #646cff;
 }
 
 @media (max-width: 600px) {
@@ -148,5 +144,8 @@ button:focus-visible {
 }
 
 footer {
-	height: 0vh;
+	padding: 2rem 1rem;
+	margin-top: 3rem;
+	text-align: center;
+	background: var(--primary);
 }

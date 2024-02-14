@@ -2,11 +2,12 @@ import { useState } from 'react';
 import { AsyncPaginate } from 'react-select-async-paginate';
 import Movie from '../components/Movie';
 import Swipe from '../components/Swipe';
-import '../styles/home.css';
+import '/styles/home.css';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const [search, setSearch] = useState(null);
-
+	const navigate = useNavigate();
   const loadOptions = async (inputValue) => {
     try {
       const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=633f745f9c96b2a95d32f0c161fe6645&query=${inputValue}`);
@@ -28,10 +29,16 @@ const Home = () => {
   };
 
   const handleOnChange = (selectedOption) => {
+		console.log(selectedOption);
+		navigate(`/individuals/${selectedOption.value}`);
     setSearch(selectedOption);
   };
 
-  const getOptionLabel = (option) => option.label;
+  const getOptionLabel = (option) => {
+		// option.label;
+		return option.label;
+		
+	}
 
   const customStyles = {
     control: (provided) => ({
@@ -42,7 +49,16 @@ const Home = () => {
     container: (provided) => ({
       ...provided,
       backgroundColor: '#1a1a1a',
+			zIndex:100,
     }),
+		div: (provided) => ({
+			...provided,
+      zIndex:100,
+		}),
+		option: (provided) => ({
+			...provided,
+			color: 'black',
+		}),
   };
 
   return (
@@ -66,4 +82,3 @@ const Home = () => {
 
 export default Home;
 
-// eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2MzNmNzQ1ZjljOTZiMmE5NWQzMmYwYzE2MWZlNjY0NSIsInN1YiI6IjY1YWYwNGNkODQ4ZWI5MDEwYTk5ZmU1MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.TKrkvAtivm1zoYQaVeIQiHpaQUk2VrcK1WTT6bjBZPk

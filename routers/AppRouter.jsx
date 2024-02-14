@@ -9,7 +9,7 @@ import Footer from '../components/Footer'
 // Pages
 import Home from '../pages/Home';
 import About from '../pages/About';
-import Favourite from '../pages/Favourite';
+import Favourites from '../pages/Favourites';
 import Individual from '../pages/Individual';
 import PageNotFound from '../pages/PageNotFound';
 
@@ -21,8 +21,8 @@ function AppRouter() {
           <Routes>
             <Route path="/" exact element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/favourite" element={<Favourite />} />
-            <Route path="/individuals" element={<Individual />} />
+            <Route path="/favourites" element={<Favourites />} />
+            <Route path="/individuals/:id" element={<Individual />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
       </div>

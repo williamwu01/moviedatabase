@@ -2,6 +2,8 @@
 	position: relative;
 	overflow: hidden;
 	border-radius: 20px;
+	width: 280px;
+	margin: 0 auto;
 }
 
 .movie-card img {
@@ -21,17 +23,50 @@
 	gap: 1rem;
 }
 
-@media (min-width: 480px) {
+@media (min-width: 600px) {
 	.movie-container {
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(2, 1fr);
 		gap: 3rem;
 	}
 }
 
-@media (min-width: 992px) {
+@media (min-width: 815px) {
+	.movie-container {
+		grid-template-columns: repeat(3, 1fr);
+		gap: 3rem;
+	}
+
+	.movie-card {
+		position: relative;
+		overflow: hidden;
+		border-radius: 20px;
+		width: 250px;
+		margin: 0 auto;
+	}
+
+	.swiper-slide img {
+		height: 70vh;
+		object-position: top;
+	}
+}
+
+@media (min-width: 1075px) {
 	.movie-container {
 		grid-template-columns: repeat(4, 1fr);
 		gap: 2rem;
+	}
+
+	.movie-card {
+		position: relative;
+		overflow: hidden;
+		border-radius: 20px;
+		width: 250px;
+		margin: 0 auto;
+	}
+
+	.swiper-slide img {
+		height: 80vh;
+		object-position: top;
 	}
 }
 

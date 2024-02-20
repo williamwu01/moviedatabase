@@ -1,11 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AsyncPaginate } from 'react-select-async-paginate';
 import Movie from '../components/Movie';
 import Swipe from '../components/Swipe';
 import '/styles/home.css';
 import { useNavigate } from 'react-router-dom';
+import { appTitles } from '../globals/globals';
 
 const Home = () => {
+	useEffect(() => {
+		document.title = `Home`;
+}, []);
+
   const [search, setSearch] = useState(null);
 	const navigate = useNavigate();
   const loadOptions = async (inputValue) => {

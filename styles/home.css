@@ -22,7 +22,7 @@
 
 header {
 	justify-content: space-between;
-	padding: 0;
+	padding: 3px;
 	display: flex;
 	align-items: center;
 	background-color: #1a1a1a;
@@ -39,7 +39,7 @@ header {
 	flex-direction: column;
 	position: absolute;
 	background-color: #1a1a1a;
-	top: 8rem;
+	top: 5.5rem;
 	right: 0;
 	left: 0;
 	width: 100%;

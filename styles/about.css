@@ -1,12 +1,52 @@
 .aboutsec {
 	background-color: #1a1a1a; /* Set background color */
-	background-image: url(../src/assets/aboutusimage.jpg);
+	/* background-image: url(../src/assets/aboutusimage.jpg); */
 	/* background-size: contain; This will scale the background image to fit within the body element while preserving its aspect ratio */
 	background-position: center; /* This will center the background image within the body element */
 	background-repeat: no-repeat; /* This will prevent the background image from repeating */
 	max-width: 100%; /* Set maximum width to 100% of the viewport width */
 	width: 100%; /* Set width to 100% of the viewport width */
-	height: 100vh; /* Set height to 100% of the viewport height */
 	margin: 0; /* Remove default body margin */
-	padding: 0; /* Remove default body padding */
+}
+
+.aboutsec p {
+	padding: 2rem;
+}
+
+.about-img-container {
+	text-align: center; /* Center the content (image) horizontally */
+}
+
+.about-us-bg-img {
+	width: 320px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+@media (min-width: 600px) {
+	.about-us-bg-img {
+		width: 400px;
+	}
+}
+
+@media (min-width: 768px) {
+	.about-us-bg-img {
+		width: 500px;
+	}
+}
+
+@media (min-width: 992px) {
+	.about-us-bg-img {
+		width: 600px;
+	}
+}
+
+.tmdb-container {
+	text-align: center;
+}
+
+.tmdblogo {
+	width: 200px;
+	margin-left: auto;
+	margin-right: auto;
 }

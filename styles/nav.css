@@ -7,28 +7,28 @@ body {
 label {
 	display: flex;
 	flex-direction: column;
-	width: 70px;
+	width: 50px; /* Adjust width of label */
 	cursor: pointer;
 }
 
 label span {
 	background: #fff;
-	border-radius: 10px;
-	height: 7px;
-	margin: 7px 0;
+	border-radius: 8px; /* Adjust border-radius */
+	height: 5px; /* Adjust height of span */
+	margin: 5px 0; /* Adjust margin */
 	transition: 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
 
-span:nth-of-type(1) {
-	width: 50%;
+.bar:nth-of-type(1) {
+	width: 50%; /* Adjust width of first span */
 }
 
-span:nth-of-type(2) {
-	width: 100%;
+.bar:nth-of-type(2) {
+	width: 100%; /* Adjust width of second span */
 }
 
-span:nth-of-type(3) {
-	width: 75%;
+.bar:nth-of-type(3) {
+	width: 70%; /* Adjust width of third span */
 }
 
 input[type='checkbox'] {
@@ -37,7 +37,7 @@ input[type='checkbox'] {
 
 input[type='checkbox']:checked ~ span:nth-of-type(1) {
 	transform-origin: bottom;
-	transform: rotatez(45deg) translate(8px, 0px);
+	transform: rotatez(45deg) translate(6px, 0px); /* Adjust translate values */
 }
 
 input[type='checkbox']:checked ~ span:nth-of-type(2) {
@@ -47,6 +47,6 @@ input[type='checkbox']:checked ~ span:nth-of-type(2) {
 
 input[type='checkbox']:checked ~ span:nth-of-type(3) {
 	transform-origin: bottom;
-	width: 50%;
-	transform: translate(30px, -11px) rotatez(45deg);
+	width: 50%; /* Adjust width of third span when checked */
+	transform: translate(22px, -8px) rotatez(45deg); /* Adjust translate values */
 }

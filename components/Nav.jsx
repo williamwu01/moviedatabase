@@ -46,9 +46,9 @@ const Nav = () => {
       </nav>
 			<label className="menubutton" onClick={toggleNav}>
         <input type="checkbox" id="check" onClick={(e)=>e.stopPropagation()}/>
-        <span></span>
-        <span></span>
-        <span></span>
+        <span className='bar'></span>
+        <span className='bar'></span>
+        <span className='bar'></span>
       </label>
 			{/* <Header handleShowHideNav={toggleNav}/> */}
     </>

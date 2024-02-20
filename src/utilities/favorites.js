@@ -22,6 +22,7 @@ export const removeFromFavorites = (movie) => {
 	const favorites = getFavorites();
 	const updatedFavorites = favorites.filter(favMovie => favMovie.id !== movie.id);
 	localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+	console.log('Favorites after removal:', updatedFavorites); // Log updated favorites
 	return updatedFavorites; // Return the updated list of favorites
 };
 

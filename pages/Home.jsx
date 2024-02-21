@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { appTitles } from '../globals/globals';
 
 const Home = () => {
+	const API_KEY = import.meta.env.VITE_API_KEY
 	useEffect(() => {
 		document.title = `Home`;
 }, []);
@@ -15,7 +16,7 @@ const Home = () => {
 	const navigate = useNavigate();
   const loadOptions = async (inputValue) => {
     try {
-      const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=633f745f9c96b2a95d32f0c161fe6645&query=${inputValue}`);
+      const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${inputValue}`);
       const responseData = await response.json();
 
       if (responseData.total_results > 0) {

@@ -1,6 +1,5 @@
 .img-container {
 	position: relative;
-	min-width: 100vw;
 	min-height: 70vh;
 }
 
@@ -36,7 +35,7 @@
 	border-radius: 20px;
 	z-index: 1;
 	border-radius: 10px;
-	top: 4rem;
+	bottom: 1rem;
 	left: 1rem;
 }
 
@@ -58,7 +57,8 @@
 	position: absolute;
 }
 
-.detail {
+.detail-mobile,
+.detail-desktop {
 	background: rgba(255, 255, 255, 0.103);
 	border-radius: 16px;
 	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -67,7 +67,8 @@
 	padding: 2rem;
 }
 
-.detail p {
+.detail-desktop p,
+.detail-mobile p {
 	line-height: 1.9;
 }
 
@@ -112,5 +113,85 @@
 	color: white;
 }
 
-@media (min-width: 815px) {
+.detail-desktop {
+	display: none;
+}
+
+.buttons-desktop {
+	display: none;
+}
+
+@media (min-width: 635px) {
+	.detail-mobile {
+		display: none;
+	}
+
+	.buttons-desktop {
+		display: block;
+	}
+
+	.buttons-mobile {
+		display: none;
+	}
+
+	.detail-desktop {
+		display: block;
+		position: absolute;
+		width: 400px;
+		bottom: 1rem;
+		right: 0;
+		height: 300px;
+		overflow: scroll;
+		scrollbar-width: thin; /* thin scrollbar */
+		scrollbar-color: #33333331 #05050524; /* scrollbar color */
+	}
+
+	.detail-desktop::-webkit-scrollbar {
+		display: none;
+	}
+
+	/* Customize the scrollbar track */
+	.detail-desktop::-webkit-scrollbar-track {
+		background-color: #05050524; /* Match the container background color */
+	}
+
+	/* Customize the scrollbar thumb */
+	.detail-desktop::-webkit-scrollbar-thumb {
+		background-color: #333; /* Thumb color */
+	}
+
+	.detail-desktop p,
+	.individual-heading {
+		max-width: 300px;
+	}
+}
+
+@media (min-width: 760px) {
+	.detail-desktop {
+		display: block;
+		position: absolute;
+		width: 500px;
+		bottom: 1rem;
+		right: 0;
+	}
+
+	.detail-desktop p,
+	.individual-heading {
+		max-width: 400px;
+	}
+}
+
+@media (min-width: 975px) {
+	.detail-desktop {
+		display: block;
+		position: absolute;
+		width: 700px;
+		bottom: 1rem;
+		right: 0;
+	}
+
+	.detail-desktop p,
+	.individual-heading {
+		max-width: 600px;
+	}
 }

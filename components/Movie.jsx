@@ -12,14 +12,12 @@ const Movie = () => {
 	const [selectedOption, setSelectedOption] = useState('popular');
 	const [favorites, setFavorites] = useState([]);
 	const API_KEY = import.meta.env.VITE_API_KEY
-	console.log(API_KEY);
-	console.log(import.meta.env.VITE_API_KEY)
 
 	const apiEndpoints = {
 			popular: `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`,
-			topRated: 'https://api.themoviedb.org/3/movie/top_rated?api_key=633f745f9c96b2a95d32f0c161fe6645',
-			nowPlaying: 'https://api.themoviedb.org/3/movie/now_playing?api_key=633f745f9c96b2a95d32f0c161fe6645',
-			upcoming: 'https://api.themoviedb.org/3/movie/upcoming?api_key=633f745f9c96b2a95d32f0c161fe6645'
+			topRated: `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}`,
+			nowPlaying: `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}`,
+			upcoming: `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}`
 	};
 
 	const getMovie = () => {

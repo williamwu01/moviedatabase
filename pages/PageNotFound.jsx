@@ -2,8 +2,6 @@ import { Link } from 'react-router-dom';
 
 const PageNotFound = () => {
 
-	
-
 	return (
 	<main>
 		<section className="page-not-found-section">

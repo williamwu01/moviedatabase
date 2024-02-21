@@ -15,10 +15,11 @@ const Swipe = () => {
 	const [currentOverview, setCurrentOverview] = useState('');
 	const [activeMovieId, setActiveMovieId] = useState(null);
 	const swiperRef = useRef(null);
+	const API_KEY = import.meta.env.VITE_API_KEY
 
 	const topRated = async () => {
 		try {
-			const response = await fetch('https://api.themoviedb.org/3/discover/movie?api_key=633f745f9c96b2a95d32f0c161fe6645');
+			const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}`);
 			const responseJson = await response.json();
 			setSwipeList(responseJson.results);
 			setCurrentOverview(responseJson.results[0]?.overview || '');

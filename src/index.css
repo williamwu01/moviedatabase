@@ -62,6 +62,7 @@ body {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
+	z-index: 2;
 }
 
 .add:onclick {
@@ -206,19 +207,6 @@ body {
 		z-index: 1; /* Ensure it appears above the swiper slides */
 	}
 }
-
-/* .button {
-	display: inline-block;
-	padding: 10px 20px;
-	background-color: #ff5733; 
-	color: #fff;
-	text-decoration: none;
-	border-radius: 5px;
-}
-
-.button:hover {
-	background-color: #e6481d; 
-} */
 
 /* ------FAVOURITE SECTION STUFF-------  */
 main {

@@ -3,36 +3,41 @@ import { Link, useParams } from 'react-router-dom';
 import '../styles/individuals.css';
 import noImage from '../src/assets/no-image.png';
 import { MdSmartDisplay } from 'react-icons/md';
-import { IoMdAddCircle } from 'react-icons/io';
-import { addToFavorites } from '../src/utilities/favorites';
+import { IoMdAddCircle, IoMdRemoveCircle } from 'react-icons/io';
+import { addToFavorites, removeFromFavorites, getFavorites } from '../src/utilities/favorites';
 
 const Individual = () => {
 	const [movieDetails, setMovieDetails] = useState(null);
 	const [credits, setCredits] = useState([]);
-	const [trailerKey, setTrailerKey] = useState(null); // State to store trailer key
+	const [favorites, setFavorites] = useState([]);
+	const [trailerKey, setTrailerKey] = useState(null);
 	const movieId = useParams().id;
 	const mediaType = 'movie';
+	const API_KEY = import.meta.env.VITE_API_KEY;
 
 	useEffect(() => {
-		fetch(`https://api.themoviedb.org/3/${mediaType}/${movieId}?api_key=633f745f9c96b2a95d32f0c161fe6645`)
+		fetch(`https://api.themoviedb.org/3/${mediaType}/${movieId}?api_key=${API_KEY}`)
 			.then((res) => res.json())
 			.then((json) => {
 				setMovieDetails(json);
-				fetchCredits(mediaType, movieId); // Fetch credits after getting movie details
-				fetchTrailerKey(mediaType, movieId); // Fetch trailer key after getting movie details
+				fetchCredits(mediaType, movieId);
+				fetchTrailerKey(mediaType, movieId);
 			})
 			.catch((error) => console.error('Error fetching movie details:', error));
+
+		const storedFavorites = getFavorites();
+		setFavorites(storedFavorites);
 	}, [movieId, mediaType]);
 
 	const fetchCredits = (mediaType, id) => {
-		fetch(`https://api.themoviedb.org/3/${mediaType}/${id}/credits?api_key=633f745f9c96b2a95d32f0c161fe6645`)
+		fetch(`https://api.themoviedb.org/3/${mediaType}/${id}/credits?api_key=${API_KEY}`)
 			.then((res) => res.json())
 			.then((json) => setCredits(json.cast))
 			.catch((error) => console.error('Error fetching credits:', error));
 	};
 
 	const fetchTrailerKey = (mediaType, id) => {
-		fetch(`https://api.themoviedb.org/3/${mediaType}/${id}/videos?api_key=633f745f9c96b2a95d32f0c161fe6645`)
+		fetch(`https://api.themoviedb.org/3/${mediaType}/${id}/videos?api_key=${API_KEY}`)
 			.then((res) => res.json())
 			.then((json) => {
 				const trailer = json.results.find((video) => video.type === 'Trailer');
@@ -51,6 +56,20 @@ const Individual = () => {
 		}
 	};
 
+	const toggleFavorite = () => {
+		if (isFavorite(movieDetails, favorites)) {
+			removeFromFavorites(movieDetails);
+			setFavorites(favorites.filter((fav) => fav.id !== movieDetails.id));
+		} else {
+			addToFavorites(movieDetails);
+			setFavorites([...favorites, movieDetails]);
+		}
+	};
+
+	const isFavorite = (movie, favoritesList) => {
+		return favoritesList.some((fav) => fav.id === movie.id);
+	};
+
 	return (
 		<>
 			{movieDetails && (
@@ -67,25 +86,51 @@ const Individual = () => {
 						alt={movieDetails.title}
 					/>
 					<div className='backdrop'></div>
-					<button className='trailer-button' onClick={playTrailer}>
-						<MdSmartDisplay className='trailer-icon' />
-					</button>
-					<button
-						className='add'
-						onClick={() => {
-							addToFavorites(movieDetails);
-						}}
-					>
-						<IoMdAddCircle />
-					</button>
+					<div className='buttons-mobile'>
+						<button className='trailer-button' onClick={playTrailer}>
+							<MdSmartDisplay className='trailer-icon' />
+						</button>
+						<button className='add' onClick={toggleFavorite}>
+							{isFavorite(movieDetails, favorites) ? <IoMdRemoveCircle /> : <IoMdAddCircle />}
+						</button>
+					</div>
+					{movieDetails && (
+						<div className='detail-desktop'>
+							<div className='buttons-desktop'>
+								<button className='trailer-button' onClick={playTrailer}>
+									<MdSmartDisplay className='trailer-icon' />
+								</button>
+								<button className='add' onClick={toggleFavorite}>
+									{isFavorite(movieDetails, favorites) ? <IoMdRemoveCircle /> : <IoMdAddCircle />}
+								</button>
+							</div>
+							<h2 className='individual-heading'>{movieDetails.title}</h2>
+							<p>
+								<strong>Overview:</strong> {movieDetails.overview}
+							</p>
+							<p>
+								<strong>Release Date:</strong> {movieDetails.release_date}
+							</p>
+							<p>
+								<strong>Rating:</strong> {movieDetails.vote_average}
+							</p>
+							<Link to='/'>Go back to movies</Link>
+						</div>
+					)}
 				</div>
 			)}
 			{movieDetails && (
-				<div className='detail'>
+				<div className='detail-mobile'>
 					<h2 className='individual-heading'>{movieDetails.title}</h2>
-					<p>Overview: {movieDetails.overview}</p>
-					<p>Release Date: {movieDetails.release_date}</p>
-					<p>Popularity: {movieDetails.popularity}</p>
+					<p>
+						<strong>Overview:</strong> {movieDetails.overview}
+					</p>
+					<p>
+						<strong>Release Date:</strong> {movieDetails.release_date}
+					</p>
+					<p>
+						<strong>Rating:</strong> {movieDetails.vote_average}
+					</p>
 					<Link to='/'>Go back to movies</Link>
 				</div>
 			)}
